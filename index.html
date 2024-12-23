@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Card for My Love</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .card {
+            width: 90%;
+            max-width: 600px;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #ff7f7f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff4f4f;
+        }
+        .warning {
+            color: #d9534f;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .message {
+            display: none;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+        .final-message {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="question">Q1: Who is your favorite K-Pop boy band?</div>
+        <div class="input-container">
+            <input type="text" id="answer" placeholder="Your answer">
+            <div class="warning" id="warning"></div>
+        </div>
+        <button id="submit">Submit</button>
+
+        <div class="message" id="message"></div>
+        <div class="final-message" id="final-message"></div>
+    </div>
+
+    <script>
+        const questions = [
+            "Who is your favorite K-Pop boy band?",
+            "What type of dramas do you love watching?",
+            "What magical world from a book series do you adore?",
+            "Which movie studio brings you fairy-tale magic?",
+            "Name one Disney princess you love.",
+            "What house would you belong to in Harry Potter?",
+            "Which Disney song always makes you smile?"
+        ];
+
+        const answers = [
+            "seventeen",
+            "korean drama",
+            "harry potter",
+            "disney",
+            "any", // Any answer will be accepted here
+            "any",
+            "any"
+        ];
+
+        let currentQuestion = 0;
+
+        const questionEl = document.querySelector(".question");
+        const inputEl = document.querySelector("#answer");
+        const warningEl = document.querySelector("#warning");
+        const messageEl = document.querySelector("#message");
+        const finalMessageEl = document.querySelector("#final-message");
+        const buttonEl = document.querySelector("#submit");
+
+        buttonEl.addEventListener("click", () => {
+            const userAnswer = inputEl.value.trim().toLowerCase();
+            
+            if (answers[currentQuestion] === "any" || userAnswer === answers[currentQuestion]) {
+                currentQuestion++;
+
+                if (currentQuestion < questions.length) {
+                    questionEl.textContent = `Q${currentQuestion + 1}: ${questions[currentQuestion]}`;
+                    inputEl.value = "";
+                    warningEl.textContent = "";
+                } else {
+                    questionEl.style.display = "none";
+                    inputEl.style.display = "none";
+                    buttonEl.style.display = "none";
+
+                    finalMessageEl.innerHTML = `Happy birthday, my love.<br><br>As I sit here reflecting on all that you mean to me, I’m overwhelmed with gratitude and love... <br><br>Thank you for letting me be a part of your life once again, for allowing me to stand beside you...<br><br><i>You are my everything, and I can't imagine a future without you in it.</i>`;
+                }
+            } else {
+                warningEl.textContent = "Masa gatau sayanggg 😘 Ayo berrr kamu pasti bisa!";
+            }
+        });
+    </script>
+</body>
+</html>
